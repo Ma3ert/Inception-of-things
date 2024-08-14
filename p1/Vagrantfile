@@ -9,19 +9,17 @@ Vagrant.configure("2") do |config|
     vagrant1.vm.box = "ubuntu/trusty64"
 
     # The system spec
-    vagrant1.vm.provider "virtualBox1" do |box1|
+    vagrant1.vm.provider "virtualBox" do |box1|
       box1.memory = 512
       box1.cpu = 1
+      box1.name = "aadnaneS"
     end
 
     # The netwrok setting
-    vagrant1.vm.network "public_network", ip: "192.168.56.110"
+    vagrant1.vm.network "public_network", ip: "192.168.56.110", bridge: "ens33"
 
     # The startup script
-    # config.vm.provision "shell", inline: <-SHELL
-    #   apt-get update
-    #   apt-get install -y apache2
-    # SHELL
+    # config.vm.provision "shell", path: "./tools/installServer.sh"
   end
 
   # The definition of the first VM
@@ -31,16 +29,17 @@ Vagrant.configure("2") do |config|
     vagrant2.vm.box = "ubuntu/trusty64"
 
     # The system spec
-    vagrant2.vm.provider "virtualBox2" do |box2|
+    vagrant2.vm.provider "virtualBox" do |box2|
       box2.memory = 512
       box2.cpu = 1
+      box2.name = "yait-iazSW"
     end
 
     # The netwrok setting
-    vagrant2.vm.network "public_network", ip: "192.168.56.111"
+    vagrant2.vm.network "public_network", ip: "192.168.56.111", bridge: "ens33"
 
     # The startup script
-    config.vm.provision "shell", path: ""
+    # config.vm.provision "shell", path: "./tools/installServerWorker.sh"
   end
 
 end
