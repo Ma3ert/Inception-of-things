@@ -1,8 +1,14 @@
 # Updating and install dependencies packages
-apt-get update -y && apt-get install curl
+apt-get update -y
+
+# Retrieving the token from the shared folder
+TOKEN=$(cat -e /vagrant_data/node-token)
 
 # Installation of k3s in server mode
-curl -sfL https://get.k3s.io | K3S_TOKEN=xxx K3S_URL=https://server-url:6443 sh -
+curl -sfL https://get.k3s.io | K3S_TOKEN="$TOKEN" K3S_URL=https://192.168.56.110:6443 sh -
+
+# Set k3s the configuration file
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 # Installation of kubctl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
