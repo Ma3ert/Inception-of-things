@@ -2,7 +2,9 @@
 apt-get update -y
 
 # Retrieving the token from the shared folder
-TOKEN=$(cat -e /vagrant_data/node-token)
+TOKEN=$(cat /vagrant_data/node-token | tr -d '\n')
+
+env | grep TOKEN
 
 # Installation of k3s in server mode
 curl -sfL https://get.k3s.io | K3S_TOKEN="$TOKEN" K3S_URL=https://192.168.56.110:6443 sh -
