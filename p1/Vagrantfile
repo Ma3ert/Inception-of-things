@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     vagrant1.vm.synced_folder "./confs", "/vagrant_data"
 
     # The netwrok setting
-    vagrant1.vm.network "public_network", ip: "192.168.56.110", bridge: "ens33"
+    vagrant1.vm.network "private_network", ip: "192.168.56.110"
     vagrant1.vm.network "forwarded_port", guest: 6443, host: 6443
 
     # The startup script
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
     vagrant2.vm.synced_folder "./confs", "/vagrant_data"
 
     # The netwrok setting
-    vagrant2.vm.network "public_network", ip: "192.168.56.111", bridge: "ens33"
+    vagrant2.vm.network "private_network", ip: "192.168.56.111"
 
     # The startup script
     vagrant2.vm.provision "shell", path: "./scripts/installServerWorker.sh"

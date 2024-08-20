@@ -2,7 +2,7 @@
 apt-get update -y
 
 # Installation of k3s in server mode
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=" --node-external-ip "192.168.56.111" --disable-agent --disable=traefik" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--node-external-ip "192.168.56.111" --disable=traefik" sh -
 
 # Extract the token from the server to the shared folder
 sudo cat /var/lib/rancher/k3s/server/node-token > /vagrant_data/node-token
