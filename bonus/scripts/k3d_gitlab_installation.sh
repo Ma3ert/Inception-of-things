@@ -40,16 +40,21 @@ helm repo update
 
 # Install gitlab on k3s cluster
 helm upgrade --install gitlab gitlab/gitlab \
+    -f https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
     --timeout 600s \
-    --set global.hosts.domain="172.18.0.2.gitlab.com" \
-    --set global.hosts.externalIP="172.18.0.2" \
+    --set global.hosts.domain="iot.domain.com" \
     --set global.edition=ce \
+    --set certmanager-issuer.email="yait-iaz@student.1337.ma" \
+    --set global.hosts.https="false" \
     --set global.ingress.configureCertmanager=false \
+    --set gitlab-runner.install=false \
     --namespace gitlab
 
 # Apply the argocd application
 kubectl apply -f ../config/application.yaml
 
+sudo kubectl port-forward svc/gitlab-webservice-default -n gitlab 80:8181 &
 # Forwarding the argoCD server to access argoCD UI
-# kubectl port-forward -n argocd svc/argocd-server 8080:443
+sudo kubectl port-forward -n argocd svc/argocd-server 8080:443 &
 # gitlab  https://charts.gitlab.io/
+# helm install ingress-nginx ingress-nginx/ingress-nginx -n kube-system
