@@ -1,2 +1,2 @@
 # inception-of-things
-This project aims to deepen our knowledge by using K3d and K3s with Vagrant.
+This project aims to deepen our knowledge in the devops fundamentals, using k3s/k3d along side with vagrant.
