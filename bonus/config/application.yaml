@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/Ma3ert/yait-iaz_aadnane_confs.git
+    repoURL: http://64.23.170.41:8080/root/config_bonus.git
     targetRevision: HEAD
     path: dev
 
