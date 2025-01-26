@@ -51,3 +51,6 @@ helm install gitlab gitlab/gitlab \
   --namespace gitlab
 
 sudo kubectl wait --for=condition=available deployment/gitlab-webservice-default -n gitlab --timeout=600s
+
+# kubectl port-forward --address 0.0.0.0 svc/gitlab-webservice-default 80:8181 -n gitlab
+# kubectl get secret  gitlab-gitlab-initial-root-password -n gitlab -o yaml | grep " password:" | cut -d ":" -f 2 | cut -d " " -f 2 | base64 --decode && echo

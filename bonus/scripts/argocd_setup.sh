@@ -9,3 +9,6 @@ kubectl apply -f ../config/application.yaml
 
 #wait for the argocd server
 sudo kubectl wait --for=condition=available deployment/argocd-server -n argocd --timeout=600s
+
+# kubectl port-forward --address 0.0.0.0 -n argocd svc/argocd-server 8080:443
+# kubectl get secret argocd-initial-admin-secret -n argocd -o yaml | grep " password:" | cut -d ":" -f 2 | cut -d " " -f 2 | base64 --decode && echo
